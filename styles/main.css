@@ -1,0 +1,23 @@
+.send-message {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+#mainContainer .content {
+  height: auto;
+}
+#mainContainer .content.chatContent {
+  position: absolute;
+  overflow: auto;
+  bottom: 65px;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+@media all and (max-width: 640px) {
+  .app-title {
+    padding-left: 50px;
+  }
+}
