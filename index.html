@@ -10,13 +10,14 @@
   </head>
   <body unresolved class="fullbleed layout vertical">
     <template is="dom-bind" id="app">
+      <iron-ajax auto url="http://api.randomuser.me/" handle-as="json" on-response="transformProfile"></iron-ajax>
       <paper-drawer-panel id="paperDrawerPanel">
         <paper-scroll-header-panel drawer fixed>
           <paper-toolbar id="drawerToolbar">
-            <span>Menu</span>
+            <span>Profile</span>
           </paper-toolbar>
           <div class="menuContent">
-            Menu Stuff!!!
+            <huff-profile profile={{profileData}}></huff-profile>
           </div>
         </paper-scroll-header-panel>
         <paper-scroll-header-panel main fixed>
