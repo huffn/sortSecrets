@@ -2,8 +2,26 @@
 <dom-module id="huff-profile">
   <template>
     <style>
-
+      :host {
+        display: block;
+        text-align: center;
+      }
+      img {
+        border-radius: 50%;
+        margin: 5px auto;
+        display: block;
+      }
+      h1 {
+        text-transform: capitalize;
+        margin: 0;
+      }
+      h2 {
+        margin: 0;
+      }
     </style>
+      <img src="{{profile.user.picture.medium}}" alt="{{generateProfileAlt(profile.user.username)}}"/>
+      <h1><span>{{profile.user.name.first}}</span> <span>{{profile.user.name.last}}</span></h1>
+      <h2>~<span>{{profile.user.username}}</span></h2>
   </template>
   <script>
     (function () {
@@ -11,7 +29,15 @@
 
       Polymer({
         is: 'huff-profile',
-        properties: {}
+        properties: {
+          profile: {
+            type: Object,
+            notify: true,
+          }
+        },
+        generateProfileAlt: function(username){
+          return username + "'s profile picture";
+        }
       });
     })();
   </script>
