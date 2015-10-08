@@ -4,7 +4,7 @@ Check out the [live demo](http://huffn.github.io/sortSecrets/).
 
 * * *
 
-### Starting App Locally
+### Starting the app locally
 ```
 python -m SimpleHTTPServer 8080
 ```
