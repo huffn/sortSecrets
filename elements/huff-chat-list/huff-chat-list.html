@@ -1,10 +1,74 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/firebase-element/firebase-collection.html">
 
 <dom-module id="huff-chat-list">
   <template>
     <style>
-
+      :host {
+        display: block;
+        background-color: #EDEDED;
+      }
+      img {
+        border-radius: 50%;
+        margin: 5px;
+        vertical-align: bottom;
+        height: 80px;
+        width: 80px;
+      }
+      .bubble {
+        display: flex;
+        position: relative;
+        left: 10px;
+        height: 65px;
+        background: #FFFFFF;
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        border-radius: 10px;
+        padding: 10px;
+        margin-right: 15px;
+      }
+      .right .bubble {
+        left: initial;
+        right: 10px;
+        margin-left: 15px;
+        margin-right: 0;
+      }
+      .bubble:after {
+        content: '';
+        position: absolute;
+        border-style: solid;
+        border-width: 15px 15px 15px 0;
+        border-color: transparent #FFFFFF;
+        display: block;
+        width: 0;
+        left: -15px;
+        top: 25px;
+      }
+      .right .bubble:after {
+        border-width: 15px 0 15px 15px;
+        left: initial;
+        right: -15px;
+      }
+      @media (min-width: 600px) and (max-width: 640px) {
+        .bubble {
+          width: 185px;
+          height: 80px;
+        }
+        .bubble:after {
+          top: 35px;
+        }
+        .container {
+          height: 110px;
+        }
+      }
     </style>
+    <firebase-collection location="https://sort2015secrets.firebaseio.com/posts/" data="{{data}}" id="base"></firebase-collection>
+    <template is="dom-repeat" items="{{data}}">
+      <div class$="{{generateClass(index)}}">
+        <img src="{{item.thumbnail}}" alt="{{item.username}}"/>
+        <span class="bubble" flex><span>{{item.message}}</span> ~<span>{{item.username}}</span></span>
+      </div>
+    </template>
   </template>
 
   <script>
@@ -13,7 +77,10 @@
       
       Polymer({
         is: 'huff-chat-list',
-        properties: {}
+        properties: {},
+        generateClass: function(index){
+          return 'layout container ' + (index%2 === 0 ? 'left horizontal' : 'right horizontal-reverse');
+        }
       });
     })();
   </script>
